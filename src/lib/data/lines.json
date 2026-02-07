@@ -1,0 +1,395 @@
+[
+  {
+    "name": "Línea 1",
+    "id": "stcmetro_01",
+    "icon": "stcmetro_01",
+    "order": 1,
+    "system_id": "stcmetro",
+    "path_id": "stcmetro_01",
+    "territory_id": "cdmx",
+    "color": "#F04E99",
+    "status": "new",
+    "transit": {
+      "vehicles_per_line": 10,
+      "ave_speed": 35,
+      "vehicle_length": 150,
+      "vehicle_segments": 9,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 60
+    }
+  },
+  {
+    "name": "Línea 2",
+    "id": "stcmetro_02",
+    "icon": "stcmetro_02",
+    "order": 2,
+    "system_id": "stcmetro",
+    "path_id": "stcmetro_02",
+    "territory_id": "cdmx",
+    "color": "#006EB9",
+    "transit": {
+      "vehicles_per_line": 40,
+      "ave_speed": 35,
+      "vehicle_length": 150,
+      "vehicle_segments": 9,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 30
+    }
+  },
+  {
+    "name": "Línea 3",
+    "id": "stcmetro_03",
+    "icon": "stcmetro_03",
+    "order": 3,
+    "system_id": "stcmetro",
+    "path_id": "stcmetro_03",
+    "territory_id": "cdmx",
+    "color": "#B59D07",
+    "transit": {
+      "vehicles_per_line": 25,
+      "ave_speed": 35,
+      "vehicle_length": 150,
+      "vehicle_segments": 9,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 30
+    }
+  },
+  {
+    "name": "Línea 4",
+    "id": "stcmetro_04",
+    "icon": "stcmetro_04",
+    "order": 4,
+    "system_id": "stcmetro",
+    "path_id": "stcmetro_04",
+    "territory_id": "cdmx",
+    "color": "#44BAAF",
+    "transit": {
+      "vehicles_per_line": 12,
+      "ave_speed": 35,
+      "vehicle_length": 150,
+      "vehicle_segments": 9,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 30
+    }
+  },
+  {
+    "name": "Línea 5",
+    "id": "stcmetro_05",
+    "icon": "stcmetro_05",
+    "order": 5,
+    "system_id": "stcmetro",
+    "path_id": "stcmetro_05",
+    "territory_id": "cdmx",
+    "color": "#FFD100",
+    "transit": {
+      "vehicles_per_line": 24,
+      "ave_speed": 35,
+      "vehicle_length": 150,
+      "vehicle_segments": 9,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 30
+    }
+  },
+  {
+    "name": "Línea 6",
+    "id": "stcmetro_06",
+    "icon": "stcmetro_06",
+    "order": 6,
+    "system_id": "stcmetro",
+    "path_id": "stcmetro_06",
+    "territory_id": "cdmx",
+    "color": "#F60B12",
+    "transit": {
+      "vehicles_per_line": 14,
+      "ave_speed": 35,
+      "vehicle_length": 150,
+      "vehicle_segments": 9,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 30
+    }
+  },
+  {
+    "name": "Línea 7",
+    "id": "stcmetro_07",
+    "icon": "stcmetro_07",
+    "order": 7,
+    "system_id": "stcmetro",
+    "path_id": "stcmetro_07",
+    "territory_id": "cdmx",
+    "color": "#FF7310",
+    "transit": {
+      "vehicles_per_line": 30,
+      "ave_speed": 35,
+      "vehicle_length": 150,
+      "vehicle_segments": 9,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 30
+    }
+  },
+  {
+    "name": "Línea 8",
+    "id": "stcmetro_08",
+    "icon": "stcmetro_08",
+    "order": 8,
+    "system_id": "stcmetro",
+    "path_id": "stcmetro_08",
+    "territory_id": "cdmx",
+    "color": "#00A25D",
+    "transit": {
+      "vehicles_per_line": 28,
+      "ave_speed": 35,
+      "vehicle_length": 150,
+      "vehicle_segments": 9,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 30
+    }
+  },
+  {
+    "name": "Línea 9",
+    "id": "stcmetro_09",
+    "icon": "stcmetro_09",
+    "order": 9,
+    "system_id": "stcmetro",
+    "path_id": "stcmetro_09",
+    "territory_id": "cdmx",
+    "color": "#672825",
+    "transit": {
+      "vehicles_per_line": 32,
+      "ave_speed": 35,
+      "vehicle_length": 150,
+      "vehicle_segments": 9,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 30
+    }
+  },
+  {
+    "name": "Línea 12",
+    "id": "stcmetro_12",
+    "icon": "stcmetro_12",
+    "order": 12,
+    "system_id": "stcmetro",
+    "path_id": "stcmetro_12",
+    "territory_id": "cdmx",
+    "color": "#C29D44",
+    "transit": {
+      "vehicles_per_line": 28,
+      "ave_speed": 35,
+      "vehicle_length": 150,
+      "vehicle_segments": 9,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 30
+    }
+  },
+  {
+    "name": "Línea A",
+    "id": "stcmetro_a",
+    "icon": "stcmetro_a",
+    "order": 10,
+    "system_id": "stcmetro",
+    "path_id": "stcmetro_a",
+    "territory_id": "cdmx",
+    "color": "#8C2B79",
+    "transit": {
+      "vehicles_per_line": 30,
+      "ave_speed": 35,
+      "vehicle_length": 150,
+      "vehicle_segments": 9,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 30
+    }
+  },
+  {
+    "name": "Línea B",
+    "id": "stcmetro_b",
+    "icon": "stcmetro_b",
+    "order": 11,
+    "system_id": "stcmetro",
+    "path_id": "stcmetro_b",
+    "territory_id": "cdmx",
+    "color": "#00A261",
+    "transit": {
+      "vehicles_per_line": 34,
+      "ave_speed": 35,
+      "vehicle_length": 150,
+      "vehicle_segments": 9,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 30
+    }
+  },
+  {
+    "name": "Línea 1",
+    "id": "metrobus_01",
+    "icon": "metrobus_01",
+    "order": 1,
+    "system_id": "metrobus",
+    "path_id": "metrobus_01",
+    "territory_id": "cdmx",
+    "color": "#A4292E"
+  },
+  {
+    "name": "Línea 2",
+    "id": "metrobus_02",
+    "icon": "metrobus_02",
+    "order": 2,
+    "system_id": "metrobus",
+    "path_id": "metrobus_02",
+    "territory_id": "cdmx",
+    "color": "#95358F"
+  },
+  {
+    "name": "Línea 3",
+    "id": "metrobus_03",
+    "icon": "metrobus_03",
+    "order": 3,
+    "system_id": "metrobus",
+    "path_id": "metrobus_03",
+    "territory_id": "cdmx",
+    "color": "#77A22F"
+  },
+  {
+    "name": "Línea 4",
+    "id": "metrobus_04",
+    "icon": "metrobus_04",
+    "order": 4,
+    "system_id": "metrobus",
+    "path_id": "metrobus_04",
+    "territory_id": "cdmx",
+    "color": "#FFFF5100",
+    "routes": [
+      {
+        "id": "metrobus_04n",
+        "name": "Ruta Norte"
+      },
+      {
+        "id": "metrobus_04s",
+        "name": "Ruta Sur"
+      },
+      {
+        "id": "metrobus_04p",
+        "name": "Ruta Pantitlán"
+      },
+      {
+        "id": "metrobus_04a",
+        "name": "Ruta Aeropuerto"
+      }
+    ]
+  },
+  {
+    "name": "Línea 5",
+    "id": "metrobus_05",
+    "icon": "metrobus_05",
+    "order": 5,
+    "system_id": "metrobus",
+    "path_id": "metrobus_05",
+    "territory_id": "cdmx",
+    "color": "#1C295C"
+  },
+  {
+    "name": "Línea 6",
+    "id": "metrobus_06",
+    "icon": "metrobus_06",
+    "order": 6,
+    "system_id": "metrobus",
+    "path_id": "metrobus_06",
+    "territory_id": "cdmx",
+    "color": "#D41773"
+  },
+  {
+    "name": "Línea 7",
+    "id": "metrobus_07",
+    "icon": "metrobus_07",
+    "order": 7,
+    "system_id": "metrobus",
+    "path_id": "metrobus_07",
+    "territory_id": "cdmx",
+    "color": "#106A37"
+  },
+  {
+    "name": "Línea 1",
+    "id": "trenligero_1",
+    "icon": "trenligero_1",
+    "order": 0,
+    "system_id": "trenligero",
+    "path_id": "trenligero_1",
+    "territory_id": "cdmx_large",
+    "color": "#0057b8"
+  },
+  {
+    "name": "Línea 1",
+    "id": "cablebus_1",
+    "icon": "cablebus_1",
+    "order": 0,
+    "system_id": "cablebus",
+    "path_id": "cablebus_1",
+    "territory_id": "cdmx_large",
+    "color": "#19AAE0"
+  },
+  {
+    "name": "Línea 2",
+    "id": "cablebus_2",
+    "icon": "cablebus_2",
+    "order": 1,
+    "system_id": "cablebus",
+    "path_id": "cablebus_2",
+    "territory_id": "cdmx_large",
+    "color": "#19AAE0"
+  },
+  {
+    "name": "Línea 3",
+    "id": "cablebus_3",
+    "icon": "cablebus_3",
+    "order": 2,
+    "system_id": "cablebus",
+    "path_id": "cablebus_3",
+    "territory_id": "cdmx_large",
+    "color": "#19AAE0"
+  },
+  {
+    "name": "Línea 10",
+    "id": "trolebus_10",
+    "icon": "trolebus_10",
+    "order": 10,
+    "system_id": "trolebus",
+    "path_id": "trolebus_10",
+    "territory_id": "cdmx_large",
+    "color": "#0155B7"
+  },
+  {
+    "name": "Línea 11",
+    "id": "trolebus_11",
+    "icon": "trolebus_11",
+    "order": 11,
+    "system_id": "trolebus",
+    "path_id": "trolebus_11",
+    "territory_id": "cdmx_large",
+    "color": "#0155B7"
+  },
+  {
+    "name": "Línea 12",
+    "id": "trolebus_12",
+    "icon": "trolebus_12",
+    "path_id": "trolebus_12",
+    "order": 12,
+    "system_id": "trolebus",
+    "territory_id": "cdmx_large",
+    "color": "#0155B7"
+  },
+  {
+    "name": "El Insurgente",
+    "id": "insur_01",
+    "icon": "insur_01",
+    "order": 1,
+    "system_id": "insur",
+    "path_id": "insur",
+    "territory_id": "cdmx_large",
+    "color": "#83332E",
+    "transit": {
+      "vehicles_per_line": 10,
+      "ave_speed": 100,
+      "vehicle_length": 100,
+      "vehicle_segments": 5,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 60
+    }
+  }
+]

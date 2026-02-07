@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# YOCDMX ROUTES
+
+A modern, AI-powered public transport route finder for Mexico City (CDMX). This MVP demonstrates the use of Large Language Models (Gemini) to execute graph search algorithms (Dijkstra-style) with a focus on "reasoning" through commutes and transit options.
+
+## Features
+
+- **LLM-Powered Routing**: Uses Gemini 1.5 Flash to find optimal routes through a pre-filtered graph of station edges.
+- **Classical Fallback**: Includes a robust JavaScript implementation of the Dijkstra algorithm for validation and comparison.
+- **Rich Interactive UI**: A premium, glassmorphic dashboard built with Next.js and Tailwind CSS.
+- **Semantic Data Model**: Hierarchical transport system data covering Metro, Metrobús, Cablebús, and more.
+- **Station Search**: Real-time textual search for over 900+ transit points.
+
+## Tech Stack
+
+- **Runtime**: Bun
+- **Framework**: Next.js 15+ (App Router)
+- **Styling**: Tailwind CSS 4.0
+- **AI**: Gemini API
+- **Language**: Pure JavaScript
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository and move to the folder.
+2. Install dependencies:
+   ```bash
+   bun install
+   ```
+3. Set your Gemini API Key in `.env.local`:
+   ```bash
+   GEMINI_API_KEY=your_api_key_here
+   ```
+4. Run the development server:
+   ```bash
+   bun run dev
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Project Structure
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- `src/lib/dijkstra.js`: Classical graph search implementation.
+- `src/lib/gemini.js`: LLM prompt engineering and response parsing.
+- `src/lib/data/`: JSON database of CDMX transit.
+- `src/app/api/route/`: API endpoint orchestrating the search.
+- `src/components/`: Reusable React components with premium aesthetics.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+MIT

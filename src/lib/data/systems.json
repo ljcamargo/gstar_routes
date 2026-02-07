@@ -1,0 +1,1091 @@
+[
+  {
+    "name": "Metro",
+    "short": "Metro",
+    "id": "stcmetro",
+    "icon": "stcmetro",
+    "kind": "subway",
+    "territory_id": "cdmx_large",
+    "order": 0,
+    "color": "#fe5000",
+    "ar": true,
+    "weight": 3,
+    "info": {
+      "id": "stcmetro_info",
+      "status": "WORKING",
+      "flags": [],
+      "description": "El Metro de la CDMX es un sistema de transporte subterráneo y elevado que conecta diversas áreas de la ciudad a través de 12 líneas y más de 190 estaciones, ofreciendo una opción rápida y económica para moverse por la capital.",
+      "links": [
+        {
+          "kind": "web",
+          "url": "https://www.metro.cdmx.gob.mx"
+        }
+      ],
+      "amenities": [
+        {
+          "code": "accessibility",
+          "name": "Accesibilidad",
+          "description": "Instalaciones adaptadas para personas con movilidad reducida.",
+          "coverage": 0.5
+        },
+        {
+          "code": "payment_cash",
+          "name": "Pago en efectivo",
+          "description": "Se acepta pago en efectivo.",
+          "coverage": 1.0
+        },
+        {
+          "code": "wifi",
+          "name": "Wi-Fi Gratis",
+          "description": "Conexión Wi-Fi gratuita disponible en algunas estaciones.",
+          "coverage": 0.25
+        },
+        {
+          "code": "bicycle",
+          "name": "Espacio para bicicletas",
+          "description": "Espacios dedicados para transportar bicicletas en el metro y metrobus.",
+          "coverage": 0.25
+        },
+        {
+          "code": "restroom",
+          "name": "Baños",
+          "description": "Servicios de baño disponibles en algunas estaciones.",
+          "coverage": 0.25
+        }
+      ],
+      "schedules": [
+        {
+          "timezone": "-06:00",
+          "start_time": "05:00",
+          "end_time": "00:00",
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        {
+          "timezone": "-06:00",
+          "start_time": "06:00",
+          "end_time": "00:00",
+          "monday": false,
+          "tuesday": false,
+          "wednesday": false,
+          "thursday": false,
+          "friday": false,
+          "saturday": true,
+          "sunday": false
+        },
+        {
+          "timezone": "-06:00",
+          "start_time": "07:00",
+          "end_time": "00:00",
+          "monday": false,
+          "tuesday": false,
+          "wednesday": false,
+          "thursday": false,
+          "friday": false,
+          "saturday": false,
+          "sunday": true
+        }
+      ],
+      "prices": [
+        {
+          "amount": 5.0,
+          "currency": "MXN",
+          "includes": [
+            "Mismo precio para cualquier distancia",
+            "Transbordos incluidos"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Personas de 70 años o más",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia",
+            "Transbordos incluidos"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Personas con discapacidad evidente",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia",
+            "Transbordos incluidos"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Jóvenes INJUVE",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia",
+            "Transbordos incluidos"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Niños o niñas menores de 5 años de edad",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia",
+            "Transbordos incluidos"
+          ]
+        }
+      ]
+    },
+    "transit": {
+      "vehicles_per_line": 20,
+      "ave_speed": 40,
+      "vehicle_length": 150,
+      "vehicle_segments": 9,
+      "vehicle_color": "#fe5000",
+      "station_stop_duration": 30
+    }
+  },
+  {
+    "name": "Metrobús",
+    "short": "Metrobús",
+    "id": "metrobus",
+    "icon": "metrobus",
+    "territory_id": "cdmx_large",
+    "kind": "rtp",
+    "order": 1,
+    "color": "#cf142e",
+    "ar": true,
+    "weight": 2,
+    "info": {
+      "id": "metrobus_info",
+      "status": "WORKING",
+      "flags": [],
+      "description": "El Metrobús de la CDMX es un sistema de autobuses de tránsito rápido que recorre la ciudad a través de 7 líneas. Con carriles exclusivos, proporciona un transporte eficiente y accesible, conectando puntos clave y reduciendo tiempos de viaje.",
+      "links": [
+        {
+          "kind": "web",
+          "url": "https://www.metrobus.cdmx.gob.mx/"
+        }
+      ],
+      "schedules": [
+        {
+          "timezone": "-06:00",
+          "start_time": "04:30",
+          "end_time": "00:00",
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": true,
+          "sunday": false
+        },
+        {
+          "timezone": "-06:00",
+          "start_time": "05:00",
+          "end_time": "00:00",
+          "monday": false,
+          "tuesday": false,
+          "wednesday": false,
+          "thursday": false,
+          "friday": false,
+          "saturday": false,
+          "sunday": true
+        }
+      ],
+      "amenities": [
+        {
+          "code": "accessibility",
+          "name": "Accesibilidad",
+          "description": "Instalaciones adaptadas para personas con movilidad reducida.",
+          "coverage": 1.0
+        },
+        {
+          "code": "payment_cash",
+          "name": "Pago en efectivo",
+          "description": "Se acepta pago en efectivo.",
+          "coverage": 1.0
+        },
+        {
+          "code": "wifi",
+          "name": "Wi-Fi Gratis",
+          "description": "Conexión Wi-Fi gratuita disponible en algunas estaciones.",
+          "coverage": 0.5
+        },
+        {
+          "code": "bicycle",
+          "name": "Espacio para bicicletas",
+          "description": "Espacios dedicados para transportar bicicletas en el metro y metrobus.",
+          "coverage": 0.25
+        },
+        {
+          "code": "restroom",
+          "name": "Baños",
+          "description": "Servicios de baño disponibles en algunas estaciones.",
+          "coverage": 0.0
+        }
+      ],
+      "prices": [
+        {
+          "amount": 6.0,
+          "currency": "MXN",
+          "includes": [
+            "Mismo precio para cualquier distancia",
+            "Transbordos incluidos"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Personas de 70 años o más",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia",
+            "Transbordos incluidos"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Personas con discapacidad evidente",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia",
+            "Transbordos incluidos"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Niños o niñas menores de 5 años de edad",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia",
+            "Transbordos incluidos"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "Cablebús",
+    "short": "Cablebús",
+    "id": "cablebus",
+    "icon": "cablebus",
+    "territory_id": "cdmx_large",
+    "kind": "tram",
+    "order": 3,
+    "color": "#19AAE0",
+    "ar": false,
+    "weight": 2,
+    "schedules": [
+      {
+        "timezone": "-06:00",
+        "start_time": "05:00",
+        "end_time": "23:00",
+        "monday": true,
+        "tuesday": true,
+        "wednesday": true,
+        "thursday": true,
+        "friday": true,
+        "saturday": false,
+        "sunday": false
+      },
+      {
+        "timezone": "-06:00",
+        "start_time": "06:00",
+        "end_time": "23:00",
+        "monday": false,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": true,
+        "sunday": false
+      },
+      {
+        "timezone": "-06:00",
+        "start_time": "07:00",
+        "end_time": "23:00",
+        "monday": false,
+        "tuesday": false,
+        "wednesday": false,
+        "thursday": false,
+        "friday": false,
+        "saturday": false,
+        "sunday": true
+      }
+    ],
+    "info": {
+      "id": "cablebus_info",
+      "status": "WORKING",
+      "flags": [],
+      "description": "El Cablebús de la CDMX es un sistema de transporte por cable aéreo que conecta zonas altas y periféricas con el centro. Ofrece vistas panorámicas de la ciudad, cuenta con 2 líneas y estaciones estratégicas para facilitar el acceso rápido y seguro.",
+      "links": [
+        {
+          "kind": "web",
+          "url": "https://www.ste.cdmx.gob.mx/cablebus/"
+        }
+      ],
+      "amenities": [
+        {
+          "code": "accessibility",
+          "name": "Accesibilidad",
+          "description": "Instalaciones adaptadas para personas con movilidad reducida.",
+          "coverage": 1.0
+        },
+        {
+          "code": "payment_cash",
+          "name": "Pago en efectivo",
+          "description": "Se acepta pago en efectivo.",
+          "coverage": 1.0
+        },
+        {
+          "code": "wifi",
+          "name": "Wi-Fi Gratis",
+          "description": "Conexión Wi-Fi gratuita disponible en algunas estaciones.",
+          "coverage": 1.0
+        },
+        {
+          "code": "bicycle",
+          "name": "Espacio para bicicletas",
+          "description": "Espacios dedicados para transportar bicicletas en el metro y metrobus.",
+          "coverage": 0.0
+        },
+        {
+          "code": "restroom",
+          "name": "Baños",
+          "description": "Servicios de baño disponibles en algunas estaciones.",
+          "coverage": 0.75
+        }
+      ],
+      "schedules": [
+        {
+          "timezone": "-06:00",
+          "start_time": "05:00",
+          "end_time": "23:00",
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        {
+          "timezone": "-06:00",
+          "start_time": "06:00",
+          "end_time": "23:00",
+          "monday": false,
+          "tuesday": false,
+          "wednesday": false,
+          "thursday": false,
+          "friday": false,
+          "saturday": true,
+          "sunday": false
+        },
+        {
+          "timezone": "-06:00",
+          "start_time": "07:00",
+          "end_time": "23:00",
+          "monday": false,
+          "tuesday": false,
+          "wednesday": false,
+          "thursday": false,
+          "friday": false,
+          "saturday": false,
+          "sunday": true
+        }
+      ],
+      "prices": [
+        {
+          "amount": 7.0,
+          "currency": "MXN",
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Personas de 70 años o más",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Personas con discapacidad evidente",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Niños o niñas menores de 5 años de edad",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "Trolebús",
+    "short": "Trolebús",
+    "id": "trolebus",
+    "icon": "trolebus",
+    "kind": "trolleybus",
+    "territory_id": "cdmx_large",
+    "order": 4,
+    "color": "#0155B7",
+    "ar": false,
+    "weight": 2,
+    "info": {
+      "id": "trolebus_info",
+      "status": "WORKING",
+      "flags": [],
+      "description": "Los Trolebuses del Sistema de Transportes Eléctricos de la CDMX ofrecen transporte eléctrico con varias rutas en la ciudad. Conecta áreas centrales y periféricas mediante líneas eficientes y ecológicas, facilitando un acceso rápido y sostenible a puntos importantes.",
+      "links": [
+        {
+          "kind": "web",
+          "url": "https://www.ste.cdmx.gob.mx/tren-ligero"
+        }
+      ],
+      "prices": [
+        {
+          "amount": 4.0,
+          "currency": "MXN",
+          "conditions": "Líneas 1 a la 9",
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        },
+        {
+          "amount": 7.0,
+          "currency": "MXN",
+          "conditions": "Trolebús Elevado y Línea 12",
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        },
+        {
+          "amount": 7.0,
+          "currency": "MXN",
+          "conditions": "Línea 1 Noche",
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Personas de 70 años o más",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Personas con discapacidad evidente",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Niños o niñas menores de 5 años de edad",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "Tren Ligero",
+    "short": "Tren Ligero",
+    "id": "trenligero",
+    "icon": "trenligero",
+    "kind": "tram",
+    "territory_id": "cdmx_large",
+    "order": 2,
+    "color": "#0057b8",
+    "ar": false,
+    "weight": 2,
+    "info": {
+      "id": "trenligero_info",
+      "status": "WORKING",
+      "flags": [],
+      "description": "El Tren Ligero de la CDMX es un sistema de transporte que opera en el sur de la ciudad, extendiéndose desde Tasqueña hasta Xochimilco. Ofrece un servicio eficaz para evitar el tráfico, conectando áreas clave con 18 estaciones a lo largo de su ruta.",
+      "links": [
+        {
+          "kind": "web",
+          "url": "https://www.ste.cdmx.gob.mx/tren-ligero"
+        }
+      ],
+      "amenities": [
+        {
+          "code": "accessibility",
+          "name": "Accesibilidad",
+          "description": "Instalaciones adaptadas para personas con movilidad reducida.",
+          "coverage": 0.5
+        },
+        {
+          "code": "payment_cash",
+          "name": "Pago en efectivo",
+          "description": "Se acepta pago en efectivo.",
+          "coverage": 1.0
+        },
+        {
+          "code": "wifi",
+          "name": "Wi-Fi Gratis",
+          "description": "Conexión Wi-Fi gratuita disponible en algunas estaciones.",
+          "coverage": 0.25
+        },
+        {
+          "code": "bicycle",
+          "name": "Espacio para bicicletas",
+          "description": "Espacios dedicados para transportar bicicletas en el metro y metrobus.",
+          "coverage": 0.25
+        },
+        {
+          "code": "restroom",
+          "name": "Baños",
+          "description": "Servicios de baño disponibles en algunas estaciones.",
+          "coverage": 0.0
+        }
+      ],
+      "schedules": [
+        {
+          "timezone": "-06:00",
+          "start_time": "05:00",
+          "end_time": "00:00",
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        {
+          "timezone": "-06:00",
+          "start_time": "06:00",
+          "end_time": "00:00",
+          "monday": false,
+          "tuesday": false,
+          "wednesday": false,
+          "thursday": false,
+          "friday": false,
+          "saturday": true,
+          "sunday": false
+        },
+        {
+          "timezone": "-06:00",
+          "start_time": "07:00",
+          "end_time": "00:00",
+          "monday": false,
+          "tuesday": false,
+          "wednesday": false,
+          "thursday": false,
+          "friday": false,
+          "saturday": false,
+          "sunday": true
+        }
+      ],
+      "prices": [
+        {
+          "amount": 3.0,
+          "currency": "MXN",
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Personas de 70 años o más",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Personas con discapacidad evidente",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        },
+        {
+          "amount": 0.0,
+          "currency": "MXN",
+          "conditions": "Niños o niñas menores de 5 años de edad",
+          "discounted": true,
+          "includes": [
+            "Mismo precio para cualquier distancia"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "El Insurgente",
+    "short": "Insurgente",
+    "id": "insur",
+    "icon": "insur",
+    "kind": "train",
+    "territory_id": "cdmx_large",
+    "order": 6,
+    "color": "#83332E",
+    "ar": false,
+    "weight": 3,
+    "info": {
+      "id": "insur_info",
+      "status": "WORKING",
+      "flags": [],
+      "description": "El Tren El Insurgente (también llamado como Interurbano o México-Toluca) es un tren interurbano que conecta la zona metropolitana del Valle de Toluca con el poniente de la zona metropolitana del Valle de México y está integrado a los Sistemas de transporte de la Ciudad y el Estado de México, que son la Movilidad Integrada de la Ciudad de México (MI CDMX) y el Sistema de Movilidad Mexiquense (Movimex).",
+      "links": [
+        {
+          "kind": "web",
+          "url": "https://trenelinsurgente.mx/"
+        }
+      ],
+      "amenities": [
+        {
+          "code": "accessibility",
+          "name": "Accesibilidad",
+          "description": "Instalaciones adaptadas para personas con movilidad reducida.",
+          "coverage": 1.0
+        },
+        {
+          "code": "payment_cash",
+          "name": "Pago en efectivo",
+          "description": "Se acepta pago en efectivo.",
+          "coverage": 1.0
+        },
+        {
+          "code": "wifi",
+          "name": "Wi-Fi Gratis",
+          "description": "Conexión Wi-Fi gratuita disponible en algunas estaciones.",
+          "coverage": 0.25
+        },
+        {
+          "code": "bicycle",
+          "name": "Espacio para bicicletas",
+          "description": "Espacios dedicados para transportar bicicletas en el metro y metrobus.",
+          "coverage": 0.25
+        },
+        {
+          "code": "restroom",
+          "name": "Baños",
+          "description": "Servicios de baño disponibles en algunas estaciones.",
+          "coverage": 0.25
+        }
+      ],
+      "schedules": [
+        {
+          "timezone": "-06:00",
+          "start_time": "05:00",
+          "end_time": "23:00",
+          "monday": true,
+          "tuesday": true,
+          "wednesday": true,
+          "thursday": true,
+          "friday": true,
+          "saturday": false,
+          "sunday": false
+        },
+        {
+          "timezone": "-06:00",
+          "start_time": "06:00",
+          "end_time": "23:00",
+          "monday": false,
+          "tuesday": false,
+          "wednesday": false,
+          "thursday": false,
+          "friday": false,
+          "saturday": true,
+          "sunday": false
+        },
+        {
+          "timezone": "-06:00",
+          "start_time": "07:00",
+          "end_time": "23:00",
+          "monday": false,
+          "tuesday": false,
+          "wednesday": false,
+          "thursday": false,
+          "friday": false,
+          "saturday": false,
+          "sunday": true
+        }
+      ],
+      "prices": [
+        {
+          "amount": 15,
+          "currency": "MXN",
+          "conditions": "Observatorio-Vasco de Quiroga",
+          "includes": [
+            "Observatorio-Vasco de Quiroga"
+          ]
+        },
+        {
+          "amount": 25,
+          "currency": "MXN",
+          "conditions": "Observatorio-Santa Fe",
+          "includes": [
+            "Observatorio-Santa Fe"
+          ]
+        },
+        {
+          "amount": 70,
+          "currency": "MXN",
+          "conditions": "Observatorio-Lerma",
+          "includes": [
+            "Observatorio-Lerma"
+          ]
+        },
+        {
+          "amount": 80,
+          "currency": "MXN",
+          "conditions": "Observatorio-Metepec",
+          "includes": [
+            "Observatorio-Metepec"
+          ]
+        },
+        {
+          "amount": 90,
+          "currency": "MXN",
+          "conditions": "Observatorio-Toluca Centro",
+          "includes": [
+            "Observatorio-Toluca Centro"
+          ]
+        },
+        {
+          "amount": 100,
+          "currency": "MXN",
+          "conditions": "Observatorio-Zinacantepec",
+          "includes": [
+            "Observatorio-Zinacantepec"
+          ]
+        },
+        {
+          "amount": 15,
+          "currency": "MXN",
+          "conditions": "Vasco de Quiroga-Observatorio",
+          "includes": [
+            "Vasco de Quiroga-Observatorio"
+          ]
+        },
+        {
+          "amount": 15,
+          "currency": "MXN",
+          "conditions": "Vasco de Quiroga-Santa Fe",
+          "includes": [
+            "Vasco de Quiroga-Santa Fe"
+          ]
+        },
+        {
+          "amount": 60,
+          "currency": "MXN",
+          "conditions": "Vasco de Quiroga-Lerma",
+          "includes": [
+            "Vasco de Quiroga-Lerma"
+          ]
+        },
+        {
+          "amount": 70,
+          "currency": "MXN",
+          "conditions": "Vasco de Quiroga-Metepec",
+          "includes": [
+            "Vasco de Quiroga-Metepec"
+          ]
+        },
+        {
+          "amount": 80,
+          "currency": "MXN",
+          "conditions": "Vasco de Quiroga-Toluca Centro",
+          "includes": [
+            "Vasco de Quiroga-Toluca Centro"
+          ]
+        },
+        {
+          "amount": 90,
+          "currency": "MXN",
+          "conditions": "Vasco de Quiroga-Zinacantepec",
+          "includes": [
+            "Vasco de Quiroga-Zinacantepec"
+          ]
+        },
+        {
+          "amount": 25,
+          "currency": "MXN",
+          "conditions": "Santa Fe-Observatorio",
+          "includes": [
+            "Santa Fe-Observatorio"
+          ]
+        },
+        {
+          "amount": 15,
+          "currency": "MXN",
+          "conditions": "Santa Fe-Vasco de Quiroga",
+          "includes": [
+            "Santa Fe-Vasco de Quiroga"
+          ]
+        },
+        {
+          "amount": 60,
+          "currency": "MXN",
+          "conditions": "Santa Fe-Lerma",
+          "includes": [
+            "Santa Fe-Lerma"
+          ]
+        },
+        {
+          "amount": 70,
+          "currency": "MXN",
+          "conditions": "Santa Fe-Metepec",
+          "includes": [
+            "Santa Fe-Metepec"
+          ]
+        },
+        {
+          "amount": 80,
+          "currency": "MXN",
+          "conditions": "Santa Fe-Toluca Centro",
+          "includes": [
+            "Santa Fe-Toluca Centro"
+          ]
+        },
+        {
+          "amount": 90,
+          "currency": "MXN",
+          "conditions": "Santa Fe-Zinacantepec",
+          "includes": [
+            "Santa Fe-Zinacantepec"
+          ]
+        },
+        {
+          "amount": 70,
+          "currency": "MXN",
+          "conditions": "Lerma-Observatorio",
+          "includes": [
+            "Lerma-Observatorio"
+          ]
+        },
+        {
+          "amount": 60,
+          "currency": "MXN",
+          "conditions": "Lerma-Vasco de Quiroga",
+          "includes": [
+            "Lerma-Vasco de Quiroga"
+          ]
+        },
+        {
+          "amount": 60,
+          "currency": "MXN",
+          "conditions": "Lerma-Santa Fe",
+          "includes": [
+            "Lerma-Santa Fe"
+          ]
+        },
+        {
+          "amount": 15,
+          "currency": "MXN",
+          "conditions": "Lerma-Metepec",
+          "includes": [
+            "Lerma-Metepec"
+          ]
+        },
+        {
+          "amount": 20,
+          "currency": "MXN",
+          "conditions": "Lerma-Toluca Centro",
+          "includes": [
+            "Lerma-Toluca Centro"
+          ]
+        },
+        {
+          "amount": 20,
+          "currency": "MXN",
+          "conditions": "Lerma-Zinacantepec",
+          "includes": [
+            "Lerma-Zinacantepec"
+          ]
+        },
+        {
+          "amount": 80,
+          "currency": "MXN",
+          "conditions": "Metepec-Observatorio",
+          "includes": [
+            "Metepec-Observatorio"
+          ]
+        },
+        {
+          "amount": 70,
+          "currency": "MXN",
+          "conditions": "Metepec-Vasco de Quiroga",
+          "includes": [
+            "Metepec-Vasco de Quiroga"
+          ]
+        },
+        {
+          "amount": 70,
+          "currency": "MXN",
+          "conditions": "Metepec-Santa Fe",
+          "includes": [
+            "Metepec-Santa Fe"
+          ]
+        },
+        {
+          "amount": 15,
+          "currency": "MXN",
+          "conditions": "Metepec-Lerma",
+          "includes": [
+            "Metepec-Lerma"
+          ]
+        },
+        {
+          "amount": 15,
+          "currency": "MXN",
+          "conditions": "Metepec-Toluca Centro",
+          "includes": [
+            "Metepec-Toluca Centro"
+          ]
+        },
+        {
+          "amount": 20,
+          "currency": "MXN",
+          "conditions": "Metepec-Zinacantepec",
+          "includes": [
+            "Metepec-Zinacantepec"
+          ]
+        },
+        {
+          "amount": 90,
+          "currency": "MXN",
+          "conditions": "Toluca Centro-Observatorio",
+          "includes": [
+            "Toluca Centro-Observatorio"
+          ]
+        },
+        {
+          "amount": 80,
+          "currency": "MXN",
+          "conditions": "Toluca Centro-Vasco de Quiroga",
+          "includes": [
+            "Toluca Centro-Vasco de Quiroga"
+          ]
+        },
+        {
+          "amount": 80,
+          "currency": "MXN",
+          "conditions": "Toluca Centro-Santa Fe",
+          "includes": [
+            "Toluca Centro-Santa Fe"
+          ]
+        },
+        {
+          "amount": 20,
+          "currency": "MXN",
+          "conditions": "Toluca Centro-Lerma",
+          "includes": [
+            "Toluca Centro-Lerma"
+          ]
+        },
+        {
+          "amount": 15,
+          "currency": "MXN",
+          "conditions": "Toluca Centro-Metepec",
+          "includes": [
+            "Toluca Centro-Metepec"
+          ]
+        },
+        {
+          "amount": 15,
+          "currency": "MXN",
+          "conditions": "Toluca Centro-Zinacantepec",
+          "includes": [
+            "Toluca Centro-Zinacantepec"
+          ]
+        },
+        {
+          "amount": 100,
+          "currency": "MXN",
+          "conditions": "Zinacantepec-Observatorio",
+          "includes": [
+            "Zinacantepec-Observatorio"
+          ]
+        },
+        {
+          "amount": 90,
+          "currency": "MXN",
+          "conditions": "Zinacantepec-Vasco de Quiroga",
+          "includes": [
+            "Zinacantepec-Vasco de Quiroga"
+          ]
+        },
+        {
+          "amount": 90,
+          "currency": "MXN",
+          "conditions": "Zinacantepec-Santa Fe",
+          "includes": [
+            "Zinacantepec-Santa Fe"
+          ]
+        },
+        {
+          "amount": 20,
+          "currency": "MXN",
+          "conditions": "Zinacantepec-Lerma",
+          "includes": [
+            "Zinacantepec-Lerma"
+          ]
+        },
+        {
+          "amount": 20,
+          "currency": "MXN",
+          "conditions": "Zinacantepec-Metepec",
+          "includes": [
+            "Zinacantepec-Metepec"
+          ]
+        },
+        {
+          "amount": 15,
+          "currency": "MXN",
+          "conditions": "Zinacantepec-Toluca Centro",
+          "includes": [
+            "Zinacantepec-Toluca Centro"
+          ]
+        }
+      ],
+      "transit": {
+        "vehicles_per_line": 10,
+        "ave_speed": 100,
+        "vehicle_length": 100,
+        "vehicle_segments": 5,
+        "vehicle_color": "#fe5000",
+        "station_stop_duration": 60
+      }
+    }
+  }
+]
