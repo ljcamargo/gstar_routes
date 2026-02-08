@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-export default function StationSearch({ label, onSelect, placeholder, station, allowGeo }) {
+export default function StationSearch({ label, onSelect, placeholder, station, allowGeo, selectedSystems = [], userLocation = null }) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +18,8 @@ export default function StationSearch({ label, onSelect, placeholder, station, a
     }, [station]);
 
     useEffect(() => {
-        if (query.length < 2) {
+        // If query is too short but we have location, we can show nearest anyway when focused
+        if (query.length < 2 && (!userLocation || !isOpen)) {
             setResults([]);
             return;
         }
@@ -26,7 +27,15 @@ export default function StationSearch({ label, onSelect, placeholder, station, a
         const timer = setTimeout(async () => {
             setLoading(true);
             try {
-                const response = await fetch(`/api/stations?q=${encodeURIComponent(query)}`);
+                let url = `/api/stations?q=${encodeURIComponent(query)}`;
+                if (selectedSystems.length > 0) {
+                    url += `&systems=${selectedSystems.join(',')}`;
+                }
+                if (userLocation) {
+                    url += `&lat=${userLocation.latitude}&lon=${userLocation.longitude}`;
+                }
+
+                const response = await fetch(url);
                 const data = await response.json();
                 setResults(data.slice(0, 8));
             } catch (e) {
@@ -37,7 +46,7 @@ export default function StationSearch({ label, onSelect, placeholder, station, a
         }, 300);
 
         return () => clearTimeout(timer);
-    }, [query]);
+    }, [query, selectedSystems, userLocation, isOpen]);
 
     const handleSelect = (station) => {
         setQuery(station.name);
@@ -52,7 +61,11 @@ export default function StationSearch({ label, onSelect, placeholder, station, a
                 async (position) => {
                     try {
                         const { latitude, longitude } = position.coords;
-                        const response = await fetch(`/api/stations/nearest?lat=${latitude}&lon=${longitude}`);
+                        let url = `/api/stations/nearest?lat=${latitude}&lon=${longitude}`;
+                        if (selectedSystems.length > 0) {
+                            url += `&systems=${selectedSystems.join(',')}`;
+                        }
+                        const response = await fetch(url);
                         const nearestStation = await response.json();
                         if (nearestStation && !nearestStation.error) {
                             handleSelect(nearestStation);

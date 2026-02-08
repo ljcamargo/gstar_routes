@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import StationSearch from '@/components/StationSearch';
 import RouteDisplay from '@/components/RouteDisplay';
+import SystemFilter from '@/components/SystemFilter';
+import PromptSearch from '@/components/PromptSearch';
 
 export default function Home() {
   const [origin, setOrigin] = useState(null);
@@ -11,9 +13,27 @@ export default function Home() {
   const [route, setRoute] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedSystems, setSelectedSystems] = useState(['stcmetro', 'metrobus', 'cablebus', 'trolebus', 'trenligero', 'insur']);
+  const [userLocation, setUserLocation] = useState(null);
+  const [dynamicPrompt, setDynamicPrompt] = useState("");
 
-  const findRoute = async () => {
-    if (!origin || !destination) return;
+  useEffect(() => {
+    // Attempt to get user location on mount for sorting search results
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          });
+        },
+        (error) => console.log("Initial geolocation suppressed or failed", error)
+      );
+    }
+  }, []);
+
+  const performSearch = async (o = origin, d = destination, systems = selectedSystems, prompt = dynamicPrompt) => {
+    if (!o || !d) return;
 
     setLoading(true);
     setError(null);
@@ -22,17 +42,18 @@ export default function Home() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          originId: origin.id,
-          destinationId: destination.id,
-          useLLM: true
+          originId: o.id,
+          destinationId: d.id,
+          useLLM: true,
+          selectedSystems: systems,
+          userPrompt: prompt
         })
       });
 
       const data = await response.json();
       if (data.error) throw new Error(data.error);
 
-      // For LLM, result is an array of options
-      setRoute(data.result[0]);
+      setRoute(data.result);
     } catch (e) {
       setError(e.message);
       console.error("Route error", e);
@@ -41,29 +62,46 @@ export default function Home() {
     }
   };
 
-  const findNearest = () => {
-    if (navigator.geolocation) {
-      setLoading(true);
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          try {
-            const { latitude, longitude } = position.coords;
-            const response = await fetch(`/api/stations/nearest?lat=${latitude}&lon=${longitude}`);
-            const station = await response.json();
-            if (station && !station.error) {
-              setOrigin(station);
-            }
-          } catch (e) {
-            console.error("Nearest station error", e);
-          } finally {
-            setLoading(false);
-          }
-        },
-        (error) => {
-          console.error("Geolocation error", error);
-          setLoading(false);
-        }
-      );
+  const handleIntentDiscovered = async (intent, originalPrompt) => {
+    setLoading(true);
+    setError(null);
+    setDynamicPrompt(originalPrompt);
+
+    try {
+      // Resolve origin
+      const originRes = await fetch(`/api/stations?q=${encodeURIComponent(intent.origin_query)}&systems=${intent.selected_systems?.join(',') || ''}`);
+      const originData = await originRes.json();
+      const resolvedOrigin = originData[0];
+
+      // Resolve destination
+      const destRes = await fetch(`/api/stations?q=${encodeURIComponent(intent.destination_query)}&systems=${intent.selected_systems?.join(',') || ''}`);
+      const destData = await destRes.json();
+      const resolvedDestination = destData[0];
+
+      if (resolvedOrigin) setOrigin(resolvedOrigin);
+      if (resolvedDestination) setDestination(resolvedDestination);
+
+      const ALL_SYSTEMS = ['stcmetro', 'metrobus', 'cablebus', 'trolebus', 'trenligero', 'insur'];
+      let finalSystems = ALL_SYSTEMS;
+
+      if (intent.selected_systems && intent.selected_systems.length > 0) {
+        setSelectedSystems(intent.selected_systems);
+        finalSystems = intent.selected_systems;
+      } else {
+        setSelectedSystems(ALL_SYSTEMS);
+      }
+
+      if (resolvedOrigin && resolvedDestination) {
+        await performSearch(resolvedOrigin, resolvedDestination, finalSystems, originalPrompt);
+      } else {
+        if (!resolvedOrigin) setError(`Could not find station: ${intent.origin_query}`);
+        else if (!resolvedDestination) setError(`Could not find station: ${intent.destination_query}`);
+      }
+    } catch (e) {
+      console.error("Intent resolution error", e);
+      setError("Failed to resolve transport intent. Please try manual selection.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -98,6 +136,8 @@ export default function Home() {
 
       <section className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <div className="lg:col-span-5 space-y-6">
+          <PromptSearch onIntentDiscovered={handleIntentDiscovered} />
+
           <div className="glass rounded-3xl p-6 md:p-8 space-y-8">
             <h3 className="text-xl font-bold text-white flex items-center">
               <span className="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center mr-3 text-lg">✦</span>
@@ -111,6 +151,8 @@ export default function Home() {
                 station={origin}
                 onSelect={setOrigin}
                 allowGeo={true}
+                selectedSystems={selectedSystems}
+                userLocation={userLocation}
               />
 
               <div className="flex justify-center -my-4 relative z-10">
@@ -134,12 +176,19 @@ export default function Home() {
                 station={destination}
                 onSelect={setDestination}
                 allowGeo={true}
+                selectedSystems={selectedSystems}
+                userLocation={userLocation}
+              />
+
+              <SystemFilter
+                selectedSystems={selectedSystems}
+                onChange={setSelectedSystems}
               />
 
               <div className="pt-4">
                 <button
                   disabled={!origin || !destination || loading}
-                  onClick={findRoute}
+                  onClick={() => performSearch()}
                   className="w-full bg-gradient-to-r from-sky-500 to-sky-600 text-slate-950 font-bold py-4 px-2 rounded-xl shadow-lg shadow-sky-500/10 hover:shadow-sky-500/20 smooth-transition active:scale-95 disabled:opacity-50 disabled:scale-100 disabled:shadow-none tracking-widest text-xs whitespace-nowrap overflow-hidden text-ellipsis uppercase"
                 >
                   {loading ? 'CALCULATING OPTIMAL PATH...' : 'Find Optimal Path'}
