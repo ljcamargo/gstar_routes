@@ -116,14 +116,13 @@ export default function Home() {
       <header className="w-full max-w-5xl flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
         <div className="flex items-center space-x-4">
           <div className="relative w-16 h-16 rounded-2xl overflow-hidden shadow-2xl shadow-sky-500/20">
-            {/* Note: In a real build, we would use the actual logo file. Using a placeholder for now */}
-            <div className="absolute inset-0 bg-gradient-to-br from-sky-400 to-purple-600 flex items-center justify-center text-white font-black text-2xl">YR</div>
+            <div className="absolute inset-0 bg-gradient-to-br from-sky-400 to-purple-600 flex items-center justify-center text-white font-black text-2xl">G*</div>
           </div>
           <div>
             <h1 className="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 tracking-tighter">
-              YOCDMX ROUTES
+              G*ROUTES CDMX
             </h1>
-            <p className="text-slate-500 font-medium text-sm tracking-widest">PUBLIC TRANSPORT • AI POWERED</p>
+            <p className="text-slate-500 font-medium text-sm tracking-widest">GEMINI POWERED PUBLIC TRANSPORT</p>
           </div>
         </div>
 
@@ -139,10 +138,6 @@ export default function Home() {
           <PromptSearch onIntentDiscovered={handleIntentDiscovered} />
 
           <div className="glass rounded-3xl p-6 md:p-8 space-y-8">
-            <h3 className="text-xl font-bold text-white flex items-center">
-              <span className="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center mr-3 text-lg">✦</span>
-              Route Config
-            </h3>
 
             <div className="space-y-6">
               <StationSearch
@@ -191,7 +186,7 @@ export default function Home() {
                   onClick={() => performSearch()}
                   className="w-full bg-gradient-to-r from-sky-500 to-sky-600 text-slate-950 font-bold py-4 px-2 rounded-xl shadow-lg shadow-sky-500/10 hover:shadow-sky-500/20 smooth-transition active:scale-95 disabled:opacity-50 disabled:scale-100 disabled:shadow-none tracking-widest text-xs whitespace-nowrap overflow-hidden text-ellipsis uppercase"
                 >
-                  {loading ? 'CALCULATING OPTIMAL PATH...' : 'Find Optimal Path'}
+                  {loading ? 'Thinking...' : 'Find*Routes'}
                 </button>
               </div>
             </div>
@@ -200,7 +195,7 @@ export default function Home() {
           <div className="glass rounded-3xl p-6 border-l-4 border-amber-500/50">
             <p className="text-sm text-slate-400 leading-relaxed font-medium">
               <span className="text-amber-400 font-bold mr-2">PRO TIP:</span>
-              Yocdmx uses Gemini's advanced reasoning to find routes that consider more than just distance, like transfer complexity.
+              G*Star uses Gemini's advanced reasoning to find routes that consider more than just distance, like transfer complexity.
             </p>
           </div>
         </div>
@@ -227,7 +222,7 @@ export default function Home() {
       </section>
 
       <footer className="mt-20 py-8 text-slate-600 text-xs font-bold tracking-[0.2em] w-full max-w-5xl flex justify-between border-t border-slate-900">
-        <div>© 2026 YOCDMX ROUTES PROJECT</div>
+        <div>Ɔ 2026 G*STAR by Luis J Camargo</div>
         <div className="flex space-x-6">
           <a href="#" className="hover:text-slate-400 smooth-transition">DOCUMENTATION</a>
           <a href="#" className="hover:text-slate-400 smooth-transition">API</a>

@@ -43,7 +43,7 @@ export default function RouteDisplay({ route, loading }) {
         <div className="w-full glass rounded-3xl p-6 md:p-8 animate-in fade-in zoom-in duration-500 overflow-hidden relative">
             {foreword && (
                 <div className="mb-8 p-4 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-sky-200 text-sm leading-relaxed italic">
-                    <span className="text-sky-400 font-bold not-italic mr-2">AI:</span>
+                    <span className="text-sky-400 font-bold not-italic mr-2">Gemini:</span>
                     {foreword}
                 </div>
             )}

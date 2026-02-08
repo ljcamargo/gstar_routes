@@ -36,7 +36,7 @@ export default function PromptSearch({ onIntentDiscovered }) {
             <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-sky-500 to-purple-600 opacity-50 group-hover:opacity-100 smooth-transition"></div>
 
             <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3 ml-1 flex items-center">
-                <span className="mr-2">✨</span> AI Dynamic Search
+                <span className="mr-2">✨</span> Gemini Dynamic Search
             </h3>
 
             <form onSubmit={handleSubmit} className="relative">
@@ -62,7 +62,7 @@ export default function PromptSearch({ onIntentDiscovered }) {
             </form>
 
             <p className="text-[10px] text-slate-500 mt-2 ml-1 italic">
-                Ask in naturally, AI will configure the search for you.
+                Ask in naturally, Gemini will configure the search for you.
             </p>
         </div>
     );
