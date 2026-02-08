@@ -43,11 +43,27 @@ export default function Home() {
 
   const findNearest = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        // Logic to find nearest station using position.coords.latitude/longitude
-        // For MVP, we'll just show a message.
-        alert(`Nearest station logic would use: ${position.coords.latitude}, ${position.coords.longitude}`);
-      });
+      setLoading(true);
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          try {
+            const { latitude, longitude } = position.coords;
+            const response = await fetch(`/api/stations/nearest?lat=${latitude}&lon=${longitude}`);
+            const station = await response.json();
+            if (station && !station.error) {
+              setOrigin(station);
+            }
+          } catch (e) {
+            console.error("Nearest station error", e);
+          } finally {
+            setLoading(false);
+          }
+        },
+        (error) => {
+          console.error("Geolocation error", error);
+          setLoading(false);
+        }
+      );
     }
   };
 
@@ -92,34 +108,41 @@ export default function Home() {
               <StationSearch
                 label="ORIGIN"
                 placeholder="Where are you starting?"
+                station={origin}
                 onSelect={setOrigin}
+                allowGeo={true}
               />
 
               <div className="flex justify-center -my-4 relative z-10">
-                <button className="w-10 h-10 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-sky-400 hover:border-sky-500/50 smooth-transition shadow-xl">
-                  ⇅
+                <button
+                  onClick={() => {
+                    const tmp = origin;
+                    setOrigin(destination);
+                    setDestination(tmp);
+                  }}
+                  disabled={!origin && !destination}
+                  title="Swap Origin and Destination"
+                  className="w-10 h-10 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-sky-400 hover:border-sky-500/50 smooth-transition shadow-xl active:rotate-180 disabled:opacity-30 disabled:cursor-not-allowed group"
+                >
+                  <span className="group-hover:scale-110 smooth-transition">⇅</span>
                 </button>
               </div>
 
               <StationSearch
                 label="DESTINATION"
                 placeholder="Where are you going?"
+                station={destination}
                 onSelect={setDestination}
+                allowGeo={true}
               />
 
-              <div className="flex space-x-4 pt-4">
-                <button
-                  onClick={findNearest}
-                  className="flex-1 bg-slate-800 text-slate-300 font-bold py-4 rounded-2xl border border-slate-700 hover:bg-slate-700 hover:text-white smooth-transition active:scale-95 text-xs tracking-widest"
-                >
-                  NEAREST STATION
-                </button>
+              <div className="pt-4">
                 <button
                   disabled={!origin || !destination || loading}
                   onClick={findRoute}
-                  className="flex-[1.5] bg-gradient-to-r from-sky-400 to-sky-600 text-slate-950 font-black py-4 rounded-2xl shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40 smooth-transition active:scale-95 disabled:opacity-50 disabled:scale-100 disabled:shadow-none tracking-widest text-sm"
+                  className="w-full bg-gradient-to-r from-sky-500 to-sky-600 text-slate-950 font-bold py-4 px-2 rounded-xl shadow-lg shadow-sky-500/10 hover:shadow-sky-500/20 smooth-transition active:scale-95 disabled:opacity-50 disabled:scale-100 disabled:shadow-none tracking-widest text-xs whitespace-nowrap overflow-hidden text-ellipsis uppercase"
                 >
-                  {loading ? 'THINKING...' : 'FIND OPTIMAL'}
+                  {loading ? 'CALCULATING OPTIMAL PATH...' : 'Find Optimal Path'}
                 </button>
               </div>
             </div>

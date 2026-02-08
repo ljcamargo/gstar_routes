@@ -17,9 +17,7 @@ export async function POST(request) {
         let result;
         if (useLLM) {
             // LLM implementation
-            // We filter edges to not overwhelm the prompt
-            // For MVP we might just take a subset or rely on Gemini's capacity
-            const filteredEdges = edges.slice(0, 500); // placeholder for filtering logic
+            const filteredEdges = edges.slice(0, 500);
             result = await findRouteWithGemini(originId, destinationId, filteredEdges);
         } else {
             // Classical implementation

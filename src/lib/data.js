@@ -33,3 +33,31 @@ export const getRelevantEdges = (originId, destinationId, maxDistance = 5000) =>
         return true;
     });
 };
+
+export const getNearestStation = (lat, lon) => {
+    let nearest = null;
+    let minDistance = Infinity;
+
+    const toRad = (value) => (value * Math.PI) / 180;
+
+    stations.forEach(station => {
+        const R = 6371e3; // Earth radius in meters
+        const φ1 = toRad(lat);
+        const φ2 = toRad(station.lat);
+        const Δφ = toRad(station.lat - lat);
+        const Δλ = toRad(station.lon - lon);
+
+        const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+            Math.cos(φ1) * Math.cos(φ2) *
+            Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const dist = R * c;
+
+        if (dist < minDistance) {
+            minDistance = dist;
+            nearest = station;
+        }
+    });
+
+    return nearest;
+};

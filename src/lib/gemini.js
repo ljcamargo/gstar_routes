@@ -1,3 +1,7 @@
+import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI(process.env.GEMINI_API_KEY || "");
+
 /**
  * LLM-based route finding logic using Gemini API.
  */
@@ -83,28 +87,19 @@ export async function findRouteWithGemini(origin, destination, edges) {
         .replace("%INPUT_B%", abbreviateEdges(destination))
         .replace("%DATA%", csvData);
 
-    console.log(prompt);
-
-    // In a real implementation, you would use the Gemini SDK here.
-    // For this MVP, we'll assume an environment variable GEMINI_API_KEY is available.
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-        throw new Error("GEMINI_API_KEY is not defined");
-    }
-
-    // Gemini API call (Simplified for MVP)
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: { responseMimeType: "application/json" }
-        })
+    const result = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: prompt,
+        config: {
+            thinkingConfig: {
+                thinkingLevel: "low",
+            },
+            responseMimeType: "application/json"
+        }
     });
 
-    const result = await response.json();
-    console.log(result);
-    const text = result.candidates[0].content.parts[0].text;
+    console.log("Gemini result", result.text);
+    const text = result.text;
 
     try {
         const parsed = JSON.parse(text);
