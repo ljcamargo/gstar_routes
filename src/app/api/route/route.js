@@ -1,4 +1,4 @@
-import { findRouteWithGemini } from '@/lib/gemini';
+import { findRoute } from '@/lib/aidijkstra';
 import { findLeastCost } from '@/lib/dijkstra';
 import { getStations, getEdges } from '@/lib/data';
 
@@ -28,7 +28,8 @@ export async function POST(request) {
         if (useLLM) {
             // For Gemini, we still need a subset
             const llmEdges = edges.slice(0, 700);
-            const geminiResult = await findRouteWithGemini(originId, destinationId, llmEdges, userPrompt);
+            const geminiResult = await findRoute(originId, destinationId, llmEdges, userPrompt);
+            console.log("geminiResult", geminiResult)
 
             result = {
                 foreword: geminiResult.foreword,

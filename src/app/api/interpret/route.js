@@ -1,4 +1,4 @@
-import { extractRouteIntent } from '@/lib/gemini';
+import { promptToIntent } from '@/lib/aidijkstra';
 
 export async function POST(request) {
     try {
@@ -8,7 +8,7 @@ export async function POST(request) {
             return Response.json({ error: "Prompt is required" }, { status: 400 });
         }
 
-        const intent = await extractRouteIntent(prompt);
+        const intent = await promptToIntent(prompt);
 
         if (!intent) {
             return Response.json({ error: "Could not interpret prompt" }, { status: 422 });
