@@ -4,7 +4,7 @@ import { getStations, getEdges } from '@/lib/data';
 
 export async function POST(request) {
     try {
-        const { originId, destinationId, useLLM = true, selectedSystems = [], userPrompt = "" } = await request.json();
+        const { originId, destinationId, useLLM = true, selectedSystems = [], userPrompt = "", apiKey } = await request.json();
 
         if (!originId || !destinationId) {
             return Response.json({ error: "Origin and destination are required" }, { status: 400 });
@@ -28,7 +28,7 @@ export async function POST(request) {
         if (useLLM) {
             // For Gemini, we still need a subset
             const llmEdges = edges.slice(0, 700);
-            const { value: geminiResult, error } = await findRoute(originId, destinationId, llmEdges, userPrompt);
+            const { value: geminiResult, error } = await findRoute(originId, destinationId, llmEdges, userPrompt, "low", apiKey);
 
             if (error) {
                 return Response.json({ error });

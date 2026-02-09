@@ -157,10 +157,10 @@ const expandPaths = (pathList) => {
     return expandedList.map(deabbreviate);
 }
 
-export async function promptToIntent(userPrompt) {
+export async function promptToIntent(userPrompt, apiKey = null) {
     const content = extractRouteIntentPrompt(userPrompt);
     const tool = FIND_ROUTE_TOOL;
-    const { value: args, error } = await llmFunctionCall(content, tool);
+    const { value: args, error } = await llmFunctionCall(content, tool, apiKey);
 
     if (error) return { value: null, error };
     if (!args) return { value: null, error: "No intent discovered." };
@@ -171,9 +171,9 @@ export async function promptToIntent(userPrompt) {
     return { value: args, error: null };
 }
 
-export async function findRoute(origin, destination, edges, userPrompt = "", thinkingLevel = "low") {
+export async function findRoute(origin, destination, edges, userPrompt = "", thinkingLevel = "low", apiKey = null) {
     const content = findRoutePrompt(origin, destination, edges, userPrompt);
-    const { value: parsed, error } = await llmPromptToJson(content, SCHEMA, thinkingLevel);
+    const { value: parsed, error } = await llmPromptToJson(content, SCHEMA, thinkingLevel, apiKey);
 
     if (error) return { value: null, error };
     if (!parsed) return { value: null, error: "Failed to parse route from AI." };

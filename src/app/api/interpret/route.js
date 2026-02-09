@@ -2,13 +2,13 @@ import { promptToIntent } from '@/lib/aidijkstra';
 
 export async function POST(request) {
     try {
-        const { prompt } = await request.json();
+        const { prompt, apiKey } = await request.json();
 
         if (!prompt) {
             return Response.json({ error: "Prompt is required" }, { status: 400 });
         }
 
-        const { value: intent, error } = await promptToIntent(prompt);
+        const { value: intent, error } = await promptToIntent(prompt, apiKey);
 
         if (error) {
             return Response.json({ error });

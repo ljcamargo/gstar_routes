@@ -16,6 +16,7 @@ export default function Home() {
   const [selectedSystems, setSelectedSystems] = useState(['stcmetro', 'metrobus', 'cablebus', 'trolebus', 'trenligero', 'insur']);
   const [userLocation, setUserLocation] = useState(null);
   const [dynamicPrompt, setDynamicPrompt] = useState("");
+  const [apiKey, setApiKey] = useState("");
 
   useEffect(() => {
     // Attempt to get user location on mount for sorting search results
@@ -46,7 +47,8 @@ export default function Home() {
           destinationId: d.id,
           useLLM: true,
           selectedSystems: systems,
-          userPrompt: prompt
+          userPrompt: prompt,
+          apiKey: apiKey
         })
       });
 
@@ -68,6 +70,17 @@ export default function Home() {
     setDynamicPrompt(originalPrompt);
 
     try {
+      // Resolve intent using AI interpretation if an explicit prompt exists
+      if (originalPrompt) {
+        const interpretationRes = await fetch('/api/interpret', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt: originalPrompt, apiKey: apiKey })
+        });
+        const interpretationData = await interpretationRes.json();
+        if (interpretationData.error) throw new Error(interpretationData.error);
+      }
+
       // Resolve origin
       const originRes = await fetch(`/api/stations?q=${encodeURIComponent(intent.origin_query)}&systems=${intent.selected_systems?.join(',') || ''}`);
       const originData = await originRes.json();
@@ -126,11 +139,18 @@ export default function Home() {
           </div>
         </div>
 
-        <nav className="flex items-center space-x-2 glass p-1 rounded-2xl">
-          <button className="px-6 py-2 rounded-xl bg-sky-500 text-slate-950 font-bold text-sm smooth-transition">FINDER</button>
-          <button className="px-6 py-2 rounded-xl text-slate-400 hover:text-white font-bold text-sm smooth-transition">EXPLORE</button>
-          <button className="px-6 py-2 rounded-xl text-slate-400 hover:text-white font-bold text-sm smooth-transition">PLANS</button>
-        </nav>
+        <div className="flex items-center space-x-3 glass p-2 rounded-2xl border border-white/5 w-full md:w-auto">
+          <div className="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400">
+            <span className="text-sm font-bold">KEY</span>
+          </div>
+          <input
+            type="password"
+            placeholder="PASTE GEMINI API KEY..."
+            value={apiKey}
+            onChange={(e) => setApiKey(e.target.value)}
+            className="bg-transparent border-none outline-none text-sky-100 text-xs font-bold tracking-widest placeholder:text-slate-600 w-full md:w-64"
+          />
+        </div>
       </header>
 
       <section className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -222,7 +242,7 @@ export default function Home() {
       </section>
 
       <footer className="mt-20 py-8 text-slate-600 text-xs font-bold tracking-[0.2em] w-full max-w-5xl flex justify-between border-t border-slate-900">
-        <div>Ɔ 2026 G*STAR by Luis J Camargo</div>
+        <div>Ɔ 2026 G*Routes by Luis J Camargo</div>
         <div className="flex space-x-6">
           <a href="#" className="hover:text-slate-400 smooth-transition">DOCUMENTATION</a>
           <a href="#" className="hover:text-slate-400 smooth-transition">API</a>

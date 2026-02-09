@@ -1,11 +1,16 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI(process.env.GEMINI_API_KEY || "");
 const MODEL = "gemini-3-flash-preview";
 
-export async function llmPromptToJson(content, schema, thinkingLevel = "low") {
+const getAIClient = (apiKey) => {
+    const key = apiKey || process.env.GEMINI_API_KEY || "";
+    return new GoogleGenAI(key);
+};
+
+export async function llmPromptToJson(content, schema, thinkingLevel = "low", apiKey = null) {
     console.log("llmPromptToJson Content: ", content);
     try {
+        const ai = getAIClient(apiKey);
         const total_tokens = await ai.models.countTokens({
             model: MODEL,
             contents: content,
@@ -39,14 +44,17 @@ export async function llmPromptToJson(content, schema, thinkingLevel = "low") {
         let message = `AI Service Error: ${error.message || "Unknown error"}`;
         if (error.status === 429) {
             message = "Gemini quota exceeded. Please try again in a minute.";
+        } else if (error.message?.includes("API key not valid")) {
+            message = "The provided Gemini API key is invalid.";
         }
         return { value: null, error: message };
     }
 }
 
-export async function llmFunctionCall(content, tool) {
+export async function llmFunctionCall(content, tool, apiKey = null) {
     console.log("llmFunctionCall Content: ", content);
     try {
+        const ai = getAIClient(apiKey);
         const result = await ai.models.generateContent({
             model: MODEL,
             contents: content,
@@ -66,6 +74,8 @@ export async function llmFunctionCall(content, tool) {
         let message = `AI Intent Error: ${error.message || "Unknown error"}`;
         if (error.status === 429) {
             message = "Gemini quota exceeded. Please try again in a minute.";
+        } else if (error.message?.includes("API key not valid")) {
+            message = "The provided Gemini API key is invalid.";
         }
         return { value: null, error: message };
     }
