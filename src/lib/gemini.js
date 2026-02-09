@@ -2,15 +2,16 @@ import { GoogleGenAI } from "@google/genai";
 
 const MODEL = "gemini-3-flash-preview";
 
-const getAIClient = (apiKey) => {
-    const key = apiKey || process.env.GEMINI_API_KEY || "";
-    return new GoogleGenAI(key);
-};
-
 export async function llmPromptToJson(content, schema, thinkingLevel = "low", apiKey = null) {
     console.log("llmPromptToJson Content: ", content);
+    const key = apiKey || process.env.GEMINI_API_KEY;
+
+    if (!key) {
+        return { value: null, error: "Gemini API Key is missing. Please paste your API key in the top header to enable AI features." };
+    }
+
     try {
-        const ai = getAIClient(apiKey);
+        const ai = new GoogleGenAI(key);
         const total_tokens = await ai.models.countTokens({
             model: MODEL,
             contents: content,
@@ -53,8 +54,14 @@ export async function llmPromptToJson(content, schema, thinkingLevel = "low", ap
 
 export async function llmFunctionCall(content, tool, apiKey = null) {
     console.log("llmFunctionCall Content: ", content);
+    const key = apiKey || process.env.GEMINI_API_KEY;
+
+    if (!key) {
+        return { value: null, error: "Gemini API Key is missing. Please paste your API key in the top header to enable AI features." };
+    }
+
     try {
-        const ai = getAIClient(apiKey);
+        const ai = new GoogleGenAI(key);
         const result = await ai.models.generateContent({
             model: MODEL,
             contents: content,
