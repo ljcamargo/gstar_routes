@@ -1,16 +1,28 @@
 # G*ROUTES CDMX
 
-G*Routes CDMX, A Novel LLM based Dijkstra Algorithm to find the best public transport route
+**G*Routes CDMX: A Novel LLM-based Dijkstra Algorithm implementing human-like reasoning for urban mobility.**
 
-A modern, AI-powered public transport route finder for Mexico City (CDMX). This MVP demonstrates the use of Large Language Models (Gemini) to execute graph search algorithms (Dijkstra-style) with a focus on "reasoning" through commutes and transit options.
+A modern, AI-powered public transport route finder for Mexico City (CDMX). This project moves beyond classical graph theory by implementing a **revolutionary two-step LLM Dijkstra algorithm** using Gemini's advanced reasoning capabilities.
 
-## Features
+Built with **Antigravity** via "vibe" coding, this app translates human transit intentions into optimal, reasoned paths.
 
-- **LLM-Powered Routing**: Uses Gemini 1.5 Flash to find optimal routes through a pre-filtered graph of station edges.
-- **Classical Fallback**: Includes a robust JavaScript implementation of the Dijkstra algorithm for validation and comparison.
-- **Rich Interactive UI**: A premium, glassmorphic dashboard built with Next.js and Tailwind CSS.
-- **Semantic Data Model**: Hierarchical transport system data covering Metro, Metrobús, Cablebús, and more.
-- **Station Search**: Real-time textual search for over 900+ transit points.
+## 🚀 The Core Innovation: LLM Dijkstra
+
+Traditional algorithms (like Dijkstra or A*) find the mathematically shortest path. G*Routes implements a **paramount feature**: an **LLM version of Dijkstra's algorithm**. 
+
+The routing happens in a unique two-step AI pipeline:
+
+1.  **AI Intent Translation (Edge Filtering)**: Gemini parses your natural language input ("Vete de Pantitlán al centro usando solo Metro") to extract origin, destination, and the desired transport systems. This performs a smart "sub-graph" extraction from our 14,000+ edge database.
+2.  **LLM Dijkstra (The "Thinking" Step)**: The extracted transit graph is fed into Gemini's long context window. Instead of running a code-based calculation, Gemini uses its thinking capabilities to "reason" through the edges as an **Artificial Dijkstra Engine**, considering transfer complexity and human logic to find the best route.
+
+## ✨ Features
+
+- **LLM-Powered Reasoner**: Uses Gemini 1.5 Flash to execute the graph search, providing "Human-in-the-loop" style results without the human.
+- **Dynamic Intent Extraction**: Just type where you want to go. No rigid forms required.
+- **Vibe-Coded Foundation**: Developed entirely through natural language orchestration with the **Antigravity** agentic assistant.
+- **Classical Fallback**: Includes a standard JS Dijkstra implementation for performance benchmarking.
+- **Visual Station Search**: Real-time textual search for over 900+ transit points in CDMX.
+- **Premium UI**: A sleek, glassmorphic dashboard built with Next.js 15 and Tailwind CSS 4.0.
 
 ## Tech Stack
 
@@ -38,8 +50,8 @@ A modern, AI-powered public transport route finder for Mexico City (CDMX). This 
 
 ## Project Structure
 
-- `src/lib/dijkstra.js`: Classical graph search implementation.
-- `src/lib/gemini.js`: LLM prompt engineering and response parsing.
+- `src/lib/aidijkstra.js`: AI Dijkstra implementation and prompts.
+- `src/lib/gemini.js`: Gemini API wrapper.
 - `src/lib/data/`: JSON database of CDMX transit.
 - `src/app/api/route/`: API endpoint orchestrating the search.
 - `src/components/`: Reusable React components with premium aesthetics.
