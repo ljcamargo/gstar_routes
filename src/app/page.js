@@ -249,9 +249,8 @@ export default function Home() {
       <footer className="mt-20 py-8 text-slate-600 text-xs font-bold tracking-[0.2em] w-full max-w-5xl flex justify-between border-t border-slate-900">
         <div>Ɔ 2026 G*Routes by Luis J Camargo</div>
         <div className="flex space-x-6">
-          <a href="#" className="hover:text-slate-400 smooth-transition">DOCUMENTATION</a>
-          <a href="#" className="hover:text-slate-400 smooth-transition">API</a>
-          <a href="#" className="hover:text-slate-400 smooth-transition">GITHUB</a>
+          <a href="https://devpost.com/software/yo-routes-routes-mexico-city" target="_blank" rel="noopener noreferrer" className="hover:text-slate-400 smooth-transition">GEMINI HACKATHON</a>
+          <a href="https://github.com/ljcamargo/gstar_routes" target="_blank" rel="noopener noreferrer" className="hover:text-slate-400 smooth-transition">GITHUB</a>
         </div>
       </footer>
     </main>
