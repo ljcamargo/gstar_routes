@@ -128,8 +128,13 @@ export default function Home() {
 
       <header className="w-full max-w-5xl flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
         <div className="flex items-center space-x-4">
-          <div className="relative w-16 h-16 rounded-2xl overflow-hidden shadow-2xl shadow-sky-500/20">
-            <div className="absolute inset-0 bg-gradient-to-br from-sky-400 to-purple-600 flex items-center justify-center text-white font-black text-2xl">G*</div>
+          <div className="relative w-16 h-16 rounded-full overflow-hidden shadow-2xl shadow-sky-500/20">
+            <Image
+              src="/icons/gstar.svg"
+              alt="G*Routes Logo"
+              fill
+              className="object-cover"
+            />
           </div>
           <div>
             <h1 className="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 tracking-tighter">

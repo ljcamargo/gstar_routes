@@ -1,5 +1,7 @@
 # G*ROUTES CDMX
 
+G*Routes CDMX, A Novel LLM based Dijkstra Algorithm to find the best public transport route
+
 A modern, AI-powered public transport route finder for Mexico City (CDMX). This MVP demonstrates the use of Large Language Models (Gemini) to execute graph search algorithms (Dijkstra-style) with a focus on "reasoning" through commutes and transit options.
 
 ## Features
