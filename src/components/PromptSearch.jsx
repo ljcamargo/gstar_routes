@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export default function PromptSearch({ onIntentDiscovered }) {
+export default function PromptSearch({ onIntentDiscovered, onError }) {
     const [prompt, setPrompt] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -22,10 +22,12 @@ export default function PromptSearch({ onIntentDiscovered }) {
             if (data.intent) {
                 onIntentDiscovered(data.intent, prompt);
             } else if (data.error) {
+                if (onError) onError(data.error);
                 console.error("Interpretation error", data.error);
             }
         } catch (e) {
             console.error("Prompt submit error", e);
+            if (onError) onError("Failed to connect to AI service.");
         } finally {
             setLoading(false);
         }

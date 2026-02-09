@@ -81,12 +81,14 @@ const deabbreviate = (id) => {
         .replace("F_", "insur_");
 }
 
-const dijkstraPrompt = (userPrompt, inputA, inputB, csv) => `Context: The user asked: "${userPrompt}"
+const dijkstraPrompt = (userPrompt, inputA, inputB, csv, costField = "time", costUnit = "seconds") => `Context: The user asked: "${userPrompt}"
 From this list of edges in the included csv describing a graph, find the shortest path from "${inputA}" to "${inputB}", 
 deliver the path and cost as an object inside the "options" array in a json object according to the schema
 
 In the "foreword" field, provide a brief, helpful response to the user's specific request in Spanish.
 Don't run code, don't explain technical details, just output the JSON object.
+
+In the following list of edges, the cost value comes from the ${costField} field in units of ${costUnit}.
 
 Here is the list of edges: 
 ${csv}`;
@@ -122,7 +124,9 @@ const findRoutePrompt = (origin, destination, edges, userPrompt = "") => dijkstr
     userPrompt || defaultRoutePrompt(origin, destination),
     abbreviate(origin),
     abbreviate(destination),
-    toCSVEdges(edges, "time")
+    toCSVEdges(edges, "time"),
+    "time",
+    "seconds"
 )
 
 const expandPaths = (pathList) => {
@@ -155,18 +159,26 @@ const expandPaths = (pathList) => {
 
 export async function promptToIntent(userPrompt) {
     const content = extractRouteIntentPrompt(userPrompt);
-    const tool = FIND_ROUTE_TOOL
-    const args = llmFunctionCall(content, tool)
+    const tool = FIND_ROUTE_TOOL;
+    const { value: args, error } = await llmFunctionCall(content, tool);
+
+    if (error) return { value: null, error };
+    if (!args) return { value: null, error: "No intent discovered." };
+
     if (args.selected_systems && !Array.isArray(args.selected_systems)) {
         args.selected_systems = [args.selected_systems];
     }
-    return args;
+    return { value: args, error: null };
 }
 
 export async function findRoute(origin, destination, edges, userPrompt = "", thinkingLevel = "low") {
-    const content = findRoutePrompt(origin, destination, edges, userPrompt)
-    let parsed = llmPromptToJson(content, SCHEMA, thinkingLevel)
-    console.log("parsed", parsed)
+    const content = findRoutePrompt(origin, destination, edges, userPrompt);
+    const { value: parsed, error } = await llmPromptToJson(content, SCHEMA, thinkingLevel);
+
+    if (error) return { value: null, error };
+    if (!parsed) return { value: null, error: "Failed to parse route from AI." };
+
+    console.log("parsed", parsed);
     const optionsList = Array.isArray(parsed.options) ? parsed.options : [];
     const enrichedOptions = optionsList.map(option => ({
         ...option,
@@ -174,7 +186,10 @@ export async function findRoute(origin, destination, edges, userPrompt = "", thi
     }));
 
     return {
-        foreword: parsed.foreword,
-        options: enrichedOptions
+        value: {
+            foreword: parsed.foreword,
+            options: enrichedOptions
+        },
+        error: null
     };
 }

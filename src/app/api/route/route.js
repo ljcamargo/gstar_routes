@@ -28,7 +28,12 @@ export async function POST(request) {
         if (useLLM) {
             // For Gemini, we still need a subset
             const llmEdges = edges.slice(0, 700);
-            const geminiResult = await findRoute(originId, destinationId, llmEdges, userPrompt);
+            const { value: geminiResult, error } = await findRoute(originId, destinationId, llmEdges, userPrompt);
+
+            if (error) {
+                return Response.json({ error });
+            }
+
             console.log("geminiResult", geminiResult)
 
             result = {
@@ -38,6 +43,7 @@ export async function POST(request) {
                     path: option.path.map(id => stations.find(s => s.id === id) || { id, name: id })
                 }))
             };
+            console.log("result", result)
         } else {
             // Classical implementation
             const path = findLeastCost(nodeIds, edges, originId, destinationId, 'time');

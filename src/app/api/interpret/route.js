@@ -8,15 +8,15 @@ export async function POST(request) {
             return Response.json({ error: "Prompt is required" }, { status: 400 });
         }
 
-        const intent = await promptToIntent(prompt);
+        const { value: intent, error } = await promptToIntent(prompt);
 
-        if (!intent) {
-            return Response.json({ error: "Could not interpret prompt" }, { status: 422 });
+        if (error) {
+            return Response.json({ error });
         }
 
         return Response.json({ intent });
     } catch (error) {
         console.error("Interpretation error:", error);
-        return Response.json({ error: error.message }, { status: 500 });
+        return Response.json({ error: "An unexpected server error occurred." });
     }
 }
