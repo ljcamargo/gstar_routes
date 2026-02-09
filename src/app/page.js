@@ -215,7 +215,7 @@ export default function Home() {
           <div className="glass rounded-3xl p-6 border-l-4 border-amber-500/50">
             <p className="text-sm text-slate-400 leading-relaxed font-medium">
               <span className="text-amber-400 font-bold mr-2">PRO TIP:</span>
-              G*Star uses Gemini's advanced reasoning to find routes that consider more than just distance, like transfer complexity.
+              G*Routes uses Gemini's advanced reasoning to find routes that consider more than just distance, like transfer complexity.
             </p>
           </div>
         </div>

@@ -13,4 +13,4 @@ Mexico City's public transport system is one of the most complex in the world, w
 4. **Future Growth**: Lay the foundation for a "Public Transport Copilot" that can handle real-time disruptions and multi-modal travel through natural language.
 
 ## Why it Matters
-We are moving away from rigid, rule-based systems toward adaptive, reasoning systems. G*Start Routes is a pioneer in applying generative AI to the fundamental problem of urban mobility in one of the world's largest megalopolises.
+We are moving away from rigid, rule-based systems toward adaptive, reasoning systems. G*Routes is a pioneer in applying generative AI to the fundamental problem of urban mobility in one of the world's largest megalopolises.
