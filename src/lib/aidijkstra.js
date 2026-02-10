@@ -178,7 +178,6 @@ export async function findRoute(origin, destination, edges, userPrompt = "", thi
     if (error) return { value: null, error };
     if (!parsed) return { value: null, error: "Failed to parse route from AI." };
 
-    console.log("parsed", parsed);
     const optionsList = Array.isArray(parsed.options) ? parsed.options : [];
     const enrichedOptions = optionsList.map(option => ({
         ...option,

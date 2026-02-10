@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export default function PromptSearch({ onIntentDiscovered, onError }) {
+export default function PromptSearch({ onIntentDiscovered, onError, apiKey }) {
     const [prompt, setPrompt] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -15,7 +15,7 @@ export default function PromptSearch({ onIntentDiscovered, onError }) {
             const response = await fetch('/api/interpret', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt })
+                body: JSON.stringify({ prompt, apiKey })
             });
             const data = await response.json();
 

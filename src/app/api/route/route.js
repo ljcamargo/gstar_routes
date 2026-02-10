@@ -34,8 +34,6 @@ export async function POST(request) {
                 return Response.json({ error });
             }
 
-            console.log("geminiResult", geminiResult)
-
             result = {
                 foreword: geminiResult.foreword,
                 options: geminiResult.options.map(option => ({
@@ -43,7 +41,6 @@ export async function POST(request) {
                     path: option.path.map(id => stations.find(s => s.id === id) || { id, name: id })
                 }))
             };
-            console.log("result", result)
         } else {
             // Classical implementation
             const path = findLeastCost(nodeIds, edges, originId, destinationId, 'time');

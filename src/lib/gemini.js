@@ -3,9 +3,7 @@ import { GoogleGenAI } from "@google/genai";
 const MODEL = "gemini-3-flash-preview";
 
 export async function llmPromptToJson(content, schema, thinkingLevel = "low", apiKey = null) {
-    console.log("llmPromptToJson Content: ", content);
     const key = apiKey || process.env.GEMINI_API_KEY;
-
     if (!key) {
         return { value: null, error: "Gemini API Key is missing. Please paste your API key in the top header to enable AI features." };
     }
@@ -30,7 +28,6 @@ export async function llmPromptToJson(content, schema, thinkingLevel = "low", ap
             }
         });
 
-        console.log("Gemini result", result.text);
         const text = result.text;
 
         try {
@@ -53,9 +50,7 @@ export async function llmPromptToJson(content, schema, thinkingLevel = "low", ap
 }
 
 export async function llmFunctionCall(content, tool, apiKey = null) {
-    console.log("llmFunctionCall Content: ", content);
     const key = apiKey || process.env.GEMINI_API_KEY;
-
     if (!key) {
         return { value: null, error: "Gemini API Key is missing. Please paste your API key in the top header to enable AI features." };
     }
@@ -71,7 +66,6 @@ export async function llmFunctionCall(content, tool, apiKey = null) {
         });
 
         if (result.functionCalls && result.functionCalls.length > 0) {
-            console.log("Gemini result", JSON.stringify(result.functionCalls, null, 2));
             return { value: result.functionCalls[0].args, error: null };
         }
 

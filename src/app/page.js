@@ -70,17 +70,6 @@ export default function Home() {
     setDynamicPrompt(originalPrompt);
 
     try {
-      // Resolve intent using AI interpretation if an explicit prompt exists
-      if (originalPrompt) {
-        const interpretationRes = await fetch('/api/interpret', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ prompt: originalPrompt, apiKey: apiKey })
-        });
-        const interpretationData = await interpretationRes.json();
-        if (interpretationData.error) throw new Error(interpretationData.error);
-      }
-
       // Resolve origin
       const originRes = await fetch(`/api/stations?q=${encodeURIComponent(intent.origin_query)}&systems=${intent.selected_systems?.join(',') || ''}`);
       const originData = await originRes.json();
@@ -160,7 +149,7 @@ export default function Home() {
 
       <section className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <div className="lg:col-span-5 space-y-6">
-          <PromptSearch onIntentDiscovered={handleIntentDiscovered} onError={setError} />
+          <PromptSearch onIntentDiscovered={handleIntentDiscovered} onError={setError} apiKey={apiKey} />
 
           <div className="glass rounded-3xl p-6 md:p-8 space-y-8">
 
