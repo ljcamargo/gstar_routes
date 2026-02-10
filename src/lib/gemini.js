@@ -9,7 +9,7 @@ export async function llmPromptToJson(content, schema, thinkingLevel = "low", ap
     }
 
     try {
-        const ai = new GoogleGenAI(key);
+        const ai = new GoogleGenAI({ apiKey: key });
         const total_tokens = await ai.models.countTokens({
             model: MODEL,
             contents: content,
@@ -56,7 +56,7 @@ export async function llmFunctionCall(content, tool, apiKey = null) {
     }
 
     try {
-        const ai = new GoogleGenAI(key);
+        const ai = new GoogleGenAI({ apiKey: key });
         const result = await ai.models.generateContent({
             model: MODEL,
             contents: content,
